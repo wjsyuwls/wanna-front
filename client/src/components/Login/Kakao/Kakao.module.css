@@ -1,0 +1,30 @@
+@import url('https://webfontworld.github.io/seoulnamsan/SeoulNamsan.css');
+
+.kakao {
+    margin-top: 5px;
+    min-width: 80vw;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    padding: 12px 16px 12px 42px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+    color: #757575;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'SeoulNamsan';
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/d/dd/Kakao_Corp._symbol_-_2012.svg);
+    background-size: 20px;
+    background-color: #F7E600;
+    background-repeat: no-repeat;
+    background-position: 12px 11px;
+}
+
+.kakao:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.kakao:focus {
+    outline: none;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
+        0 0 0 3px #c8dafc;
+}
