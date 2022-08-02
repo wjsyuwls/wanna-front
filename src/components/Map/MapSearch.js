@@ -129,8 +129,9 @@ export default function MapSearch({
         placeholder="키워드를 입력하세요"
         width="85%"
         height="30px"
-        fontSize="15px"
+        border="1px solid"
         padding="5px"
+        fontSize="15px"
         onChange={(e) => {
           setInputPlace(e.target.value);
         }}

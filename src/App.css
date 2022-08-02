@@ -7,11 +7,13 @@
   src: url('./assets/font/cute.ttf');
 }
 
+/* 메인 */
 @font-face {
   font-family: 'nanum';
   src: url('./assets/font/nanum.ttf');
 }
 
+/* 메인 */
 @font-face {
   font-family: 'cafe';
   src: url('./assets/font/cafe.ttf');
@@ -22,10 +24,6 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'SeoulNamsan';
-}
-
-body {
-  /* background-color: #efefef; */
 }
 
 .App {

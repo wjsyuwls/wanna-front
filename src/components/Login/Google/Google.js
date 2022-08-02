@@ -2,7 +2,6 @@ import { signInWithGoogle } from './Auth';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login, addStatus } from '../../../reducers/userSlice';
-import axios from 'axios';
 import styles from './Google.module.css';
 import apis from '../../../apis/index.js';
 
@@ -11,7 +10,7 @@ const GoogleLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const 구글은당장로그인해라 = async () => {
+  const googleLogin = async () => {
     const userAuth = await signInWithGoogle();
     dispatch(
       login({
@@ -43,7 +42,7 @@ const GoogleLogin = () => {
 
   return (
     <div>
-      <button className={styles.google} onClick={구글은당장로그인해라}>
+      <button className={styles.google} onClick={googleLogin}>
         구글 로그인
       </button>
     </div>
