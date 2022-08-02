@@ -1,0 +1,20 @@
+.container {
+  display: grid;
+  grid-template-rows: 1fr 6fr 6fr;
+  min-height: 100vh;
+  justify-items: center;
+  align-items: center;
+}
+
+.row1 {
+  display: grid;
+  font-size: 25px;
+  font-weight: 800;
+  font-family: 'cute';
+}
+
+.row2 {
+}
+
+.row3 {
+}

@@ -37,8 +37,6 @@ export default function MyMap() {
   // page map 랜더링 시 db에서 서비스에서 검증된 place 가져옴
   React.useEffect(() => {
     let markers = [];
-    axios.post('http://localhost:3001/asfasdf');
-
     apis.post('/api/getPlace').then((res) => {
       res.data.forEach((data) => {
         markers.push({
@@ -143,6 +141,27 @@ export default function MyMap() {
                 ))}
           </>
         </Map>
+
+        {searchMarkers && moveCenter && (
+          <C.Box
+            position="absolute"
+            width="calc(100% - 40px)"
+            left="20px !important"
+            right="20px"
+            bottom="20px"
+            zIndex={1}
+            justifyItems="center"
+          >
+            <MapResearch
+              currentMarker={currentMarker}
+              setSearchMarkers={setSearchMarkers}
+              verifyPlace={verifyPlace}
+              mapRef={mapRef}
+              searchMarkers={searchMarkers}
+            />
+          </C.Box>
+        )}
+
         {searchMarkers && currentMarker && (
           <MapInfo
             currentMarker={currentMarker}

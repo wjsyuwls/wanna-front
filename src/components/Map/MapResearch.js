@@ -5,6 +5,8 @@ export default function MapResearch({
   mapRef,
   verifyPlace,
   setCategoryMarkers,
+  setSearchMarkers,
+  searchMarkers,
 }) {
   // 카테고리 검색을 요청
   function searchPlaces(code, map) {
@@ -32,10 +34,17 @@ export default function MapResearch({
           return;
         } else {
           markers.push(verifyPlace[returnIndex]);
-          console.log(markers);
         }
       });
-      setCategoryMarkers(markers);
+      console.log(markers);
+
+      // 키워드 검색이면
+      if (searchMarkers !== 'undefined') {
+        setSearchMarkers(markers);
+      } else {
+        // 카테고리 검색이면
+        setCategoryMarkers(markers);
+      }
     }
   }
 
@@ -54,7 +63,13 @@ export default function MapResearch({
       fontWeight="700"
       onClick={() => {
         const map = mapRef.current;
-        searchPlaces(currentMarker.category_code, map);
+        // currentmarker가 있으면 카테고리 검색
+        if (currentMarker === 'undefined') {
+          searchPlaces(currentMarker.category_code, map);
+        } else {
+          // 없으면 키워드 검색
+          searchPlaces(searchMarkers[0].category_code, map);
+        }
       }}
     >
       이 위치로 재검색

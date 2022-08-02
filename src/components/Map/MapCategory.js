@@ -1,26 +1,26 @@
 /*global kakao */
-import React from 'react';
-import $ from 'jquery';
-import * as C from '@chakra-ui/react';
-import { BsFlag, BsHouse } from 'react-icons/bs';
-import { MdOutlineFastfood, MdOutlineLocalCafe } from 'react-icons/md';
+import React from "react";
+import $ from "jquery";
+import * as C from "@chakra-ui/react";
+import { BsFlag, BsHouse } from "react-icons/bs";
+import { MdOutlineFastfood, MdOutlineLocalCafe } from "react-icons/md";
 
 const categories = [
   {
-    name: '관광',
-    code: 'AT4',
+    name: "관광",
+    code: "AT4",
   },
   {
-    name: '숙소',
-    code: 'AD5',
+    name: "숙소",
+    code: "AD5",
   },
   {
-    name: '맛집',
-    code: 'FD6',
+    name: "맛집",
+    code: "FD6",
   },
   {
-    name: '카페',
-    code: 'CE7',
+    name: "카페",
+    code: "CE7",
   },
 ];
 
@@ -68,11 +68,11 @@ export default function MapHeader({
 
   React.useEffect(() => {
     setCategoryMarkers([]);
-    setVisible('');
-    $('.button').css({
-      color: '#d3d3d3',
-      backgroundColor: '#ffffff',
-      border: '1px solid #d3d3d3',
+    setVisible("");
+    $(".button").css({
+      color: "#d3d3d3",
+      backgroundColor: "#ffffff",
+      border: "1px solid #d3d3d3",
     });
   }, [place]);
 
@@ -86,22 +86,22 @@ export default function MapHeader({
               width={70}
               height={35}
               marginLeft={5}
-              backgroundColor={'white'}
+              backgroundColor={"white"}
               borderRadius={3}
               color="#d3d3d3"
               border="1px solid #d3d3d3"
               key={category.code}
               onClick={(e) => {
-                setCurrentMarker('');
+                setCurrentMarker("");
 
                 if (visible === category.code) {
                   setCategoryMarkers([]);
-                  setVisible('');
+                  setVisible("");
 
                   $(e.target).css({
-                    color: '#d3d3d3',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #d3d3d3',
+                    color: "#d3d3d3",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #d3d3d3",
                   });
                 } else {
                   const map = mapRef.current;
@@ -109,27 +109,27 @@ export default function MapHeader({
                   setVisible(category.code);
                   setMoveCenter(null);
 
-                  $('.button').css({
-                    color: '#d3d3d3',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #d3d3d3',
+                  $(".button").css({
+                    color: "#d3d3d3",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #d3d3d3",
                   });
 
                   $(e.target).css({
-                    color: '#FFFFFF',
-                    backgroundColor: 'rgb(41, 96, 215)',
-                    border: 'none',
+                    color: "#FFFFFF",
+                    backgroundColor: "rgb(41, 96, 215)",
+                    border: "none",
                   });
                 }
               }}
             >
-              {category.code === 'AT4' ? (
+              {category.code === "AT4" ? (
                 <BsFlag size={14} pointerEvents="none" />
-              ) : category.code === 'AD5' ? (
+              ) : category.code === "AD5" ? (
                 <BsHouse size={14} pointerEvents="none" />
-              ) : category.code === 'FD6' ? (
+              ) : category.code === "FD6" ? (
                 <MdOutlineFastfood size={14} pointerEvents="none" />
-              ) : category.code === 'CE7' ? (
+              ) : category.code === "CE7" ? (
                 <MdOutlineLocalCafe size={14} pointerEvents="none" />
               ) : null}
               <C.Text
