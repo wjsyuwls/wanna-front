@@ -1,9 +1,11 @@
+/*eslint-disable*/
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { login, logout, addStatus } from '../../../reducers/userSlice';
-import axios from "axios";
+import axios from 'axios';
 import qs from "qs";
+import apis from '../../../apis/index.js'
 
 const KakaoLogin = () => {
     const navigate = useNavigate();
@@ -22,7 +24,7 @@ const KakaoLogin = () => {
         });
         try {
             // access token 가져오기
-            const res = await axios.post("https://kauth.kakao.com/oauth/token", payload);
+            const res = await apis.post("https://kauth.kakao.com/oauth/token", payload);
             // Kakao Javascript SDK 초기화
             window.Kakao.init(process.env.REACT_APP_KAKAO_REST_API_KEY);
             // access token 설정
@@ -41,7 +43,7 @@ const KakaoLogin = () => {
                 id: user.kakao_account.email,
             };
 
-            await axios.post('http://localhost:3001/isUser', body)
+            await apis.post('/api/isUser', body)
                 .then((res) => {
                     if (res.data.isUser) { //db에 유저정보있으면
                         dispatch(addStatus({

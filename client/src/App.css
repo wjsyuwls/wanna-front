@@ -1,5 +1,21 @@
 @import url('https://webfontworld.github.io/seoulnamsan/SeoulNamsan.css');
 
+/* 로고 */
+@font-face {
+  font-family: "cute";        
+  src: url('./assets/font/cute.ttf');
+}
+
+@font-face {
+  font-family: "nanum";
+  src: url('./assets/font/nanum.ttf');
+}
+
+@font-face {
+  font-family: "cafe";
+  src: url('./assets/font/cafe.ttf');
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -17,3 +33,8 @@ body {
   height: 100vh;
   text-align: center;
 }
+
+
+
+
+

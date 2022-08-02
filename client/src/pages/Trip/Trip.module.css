@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: "cute";
-    src: url(../../static/font/cute.ttf);
+    src: url('../../assets/font/cute.ttf');
 }
 
 

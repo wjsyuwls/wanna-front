@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -5,6 +6,7 @@ import { addStatus } from '../../reducers/userSlice';
 import $ from 'jquery';
 import axios from 'axios';
 import styles from './Register.module.css';
+import apis from '../../apis/index.js';
 
 function Register() {
 
@@ -91,7 +93,7 @@ function Register() {
             name: user.name,
             address: address // 공백 문자 이슈
         };
-        axios.post('http://localhost:3001/register', body)
+        apis.post('/api/register', body)
             .then((result) => {
                 if (result.data.message) {
                     dispatch(addStatus({
