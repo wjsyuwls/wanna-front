@@ -1,54 +1,52 @@
 /* 메인페이지 css */
 .main_photo {
-    height: auto;
-    max-width: 50%;
-  }
-  
-  /* 스크롤바 숨기기*/
-  .box{
-    -ms-overflow-style: none;
-  }
-  .box::-webkit-scrollbar{
-   display:none;
-  }
-  
-  /* 검색 css */
-  .inner {
-    position: relative;
-    width: 80%;
-    height: 40px;
-    margin: 20px auto;
-    border: 1px solid #bdc1c6;
-    border-radius: 20px;
-  }
-  
-  input {
-    width: 90%;
-    height: 100%;
-    border-color: #bdc1c6;
-    border: 0px;
-    font-size: 16px;
-    outline: none;
-  }
-  
-  .searching {
-    position: absolute;
-    left: 10px;
-    top: 20%;
-  }
-  
-  i:hover {
-    cursor: pointer;
-  }
-  
-  .icon_ect {
-    position: absolute;
-    right: 10px;
-    top: 20%;
-  }
-  
-  .fa-keyboard {
-    margin-right: 10px;
-  }
-  
-  
+  height: auto;
+  max-width: 50%;
+}
+
+/* 스크롤바 숨기기*/
+.box {
+  -ms-overflow-style: none;
+}
+.box::-webkit-scrollbar {
+  display: none;
+}
+
+/* 검색 css */
+.inner {
+  position: relative;
+  width: 80%;
+  height: 40px;
+  margin: 20px auto;
+  border: 1px solid #bdc1c6;
+  border-radius: 20px;
+}
+
+input {
+  width: 90%;
+  height: 100%;
+  border-color: #bdc1c6;
+  border: 0px;
+  font-size: 16px;
+  outline: none;
+}
+
+.searching {
+  position: absolute;
+  left: 10px;
+  top: 20%;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+.icon_ect {
+  position: absolute;
+  right: 10px;
+  top: 20%;
+}
+
+.fa-keyboard {
+  margin-right: 10px;
+}

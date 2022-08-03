@@ -8,7 +8,6 @@ import MapMarker from './MapMarkers';
 import MapInfo from './MapInfo';
 import MapResearch from './MapResearch';
 import apis from '../../apis/index.js';
-import axios from 'axios';
 
 export default function MyMap() {
   const mapRef = React.useRef();
@@ -34,10 +33,10 @@ export default function MyMap() {
   // 폴리곤 path
   const [path, setPath] = React.useState([]);
 
-  // page map 랜더링 시 db에서 서비스에서 검증된 place 가져옴
+  // page map 랜더링 시 db에서 서비스 검증된 place 가져옴
   React.useEffect(() => {
     let markers = [];
-    apis.post('/api/getPlace').then((res) => {
+    apis.post('/api/place/get').then((res) => {
       res.data.forEach((data) => {
         markers.push({
           address: data.address,
@@ -56,7 +55,7 @@ export default function MyMap() {
   }, []);
 
   return (
-    <C.Flex flexDirection="column" w="100vw" h="100vh">
+    <C.Flex flexDirection="column" w="100vw" h="100vh" fontFamily="cafe">
       <C.Box
         display="flex"
         alignItems="center"
@@ -75,6 +74,7 @@ export default function MyMap() {
         )}
       </C.Box>
       <C.Box flex="1" padding="0px 20px">
+        {/* 키워드 검색 */}
         <MapSearch
           map={map}
           place={place}
@@ -83,7 +83,9 @@ export default function MyMap() {
           setSearchMarkers={setSearchMarkers}
           path={path}
           verifyPlace={verifyPlace}
+          setMoveCenter={setMoveCenter}
         />
+        {/* 카테고리 검색 */}
         <MapCategory
           map={map}
           mapRef={mapRef}
@@ -115,6 +117,7 @@ export default function MyMap() {
           onClick={() => {
             setCurrentMarker(null);
             setMoveCenter(null);
+            console.log(categoryMarkers);
           }}
           ref={mapRef}
           onCreate={setMap}
@@ -125,24 +128,21 @@ export default function MyMap() {
                   <MapMarker
                     key={i}
                     marker={marker}
-                    currentMarker={currentMarker}
                     setCurrentMarker={setCurrentMarker}
-                    searchMarkers={searchMarkers}
                   />
                 ))
               : categoryMarkers.map((marker, i) => (
                   <MapMarker
                     key={i}
                     marker={marker}
-                    currentMarker={currentMarker}
                     setCurrentMarker={setCurrentMarker}
-                    categoryMarkers={categoryMarkers}
                   />
                 ))}
           </>
         </Map>
 
-        {searchMarkers && moveCenter && (
+        {/* 카테고리 선택 -> 지도 옮겼을때 */}
+        {categoryMarkers.length > 0 && moveCenter && (
           <C.Box
             position="absolute"
             width="calc(100% - 40px)"
@@ -153,25 +153,26 @@ export default function MyMap() {
             justifyItems="center"
           >
             <MapResearch
-              currentMarker={currentMarker}
-              setSearchMarkers={setSearchMarkers}
-              verifyPlace={verifyPlace}
               mapRef={mapRef}
-              searchMarkers={searchMarkers}
+              verifyPlace={verifyPlace}
+              currentMarker={currentMarker}
+              categoryMarkers={categoryMarkers}
+              setCategoryMarkers={setCategoryMarkers}
             />
           </C.Box>
         )}
 
-        {searchMarkers && currentMarker && (
+        {/* 카테고리 선택 */}
+        {currentMarker && (
           <MapInfo
+            mapRef={mapRef}
+            verifyPlace={verifyPlace}
             currentMarker={currentMarker}
             setCurrentMarker={setCurrentMarker}
             categoryMarkers={categoryMarkers}
+            setCategoryMarkers={setCategoryMarkers}
             visible={visible}
             moveCenter={moveCenter}
-            mapRef={mapRef}
-            verifyPlace={verifyPlace}
-            setCategoryMarkers={setCategoryMarkers}
           />
         )}
       </C.Box>

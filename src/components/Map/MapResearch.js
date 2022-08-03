@@ -1,31 +1,28 @@
 import * as C from '@chakra-ui/react';
 
 export default function MapResearch({
-  currentMarker,
   mapRef,
   verifyPlace,
+  currentMarker,
+  categoryMarkers,
   setCategoryMarkers,
-  setSearchMarkers,
-  searchMarkers,
 }) {
-  // 카테고리 검색을 요청
   function searchPlaces(code, map) {
     // 장소 검색 객체를 생성
     const ps = new kakao.maps.services.Places(map);
-
+    // 카테고리 검색을 요청
     ps.categorySearch(code, placesSearchCB, { useMapBounds: true });
   }
 
   // 장소검색이 완료됐을 때 호출되는 콜백함수
   function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
-      console.log(data);
-
       let markers = [];
       data.forEach((search) => {
         const x = search.x;
         const y = search.y;
 
+        // 카카오 api로 받아온 데이터에서 검증된 장소와 위도, 경도가 일치한 데이터 찾기
         const returnIndex = verifyPlace.findIndex((verify) => {
           return verify.x == x && verify.y == y;
         });
@@ -38,13 +35,7 @@ export default function MapResearch({
       });
       console.log(markers);
 
-      // 키워드 검색이면
-      if (searchMarkers !== 'undefined') {
-        setSearchMarkers(markers);
-      } else {
-        // 카테고리 검색이면
-        setCategoryMarkers(markers);
-      }
+      setCategoryMarkers(markers);
     }
   }
 
@@ -63,12 +54,20 @@ export default function MapResearch({
       fontWeight="700"
       onClick={() => {
         const map = mapRef.current;
-        // currentmarker가 있으면 카테고리 검색
-        if (currentMarker === 'undefined') {
-          searchPlaces(currentMarker.category_code, map);
-        } else {
-          // 없으면 키워드 검색
-          searchPlaces(searchMarkers[0].category_code, map);
+
+        if (categoryMarkers !== 'undefined') {
+          if (currentMarker !== '') {
+            if (currentMarker === null) {
+              // 카테고리 선택 -> 마커 클릭 후 닫고 -> 지도 위치 옮겼을때
+              searchPlaces(categoryMarkers[0].category_code, map);
+            } else {
+              // 카테고리 선택 -> 마커 클릭 -> 지도 위치 옮겼을때
+              searchPlaces(currentMarker.category_code, map);
+            }
+          } else {
+            // 카테고리 선택 -> 지도 옮겼을때
+            searchPlaces(categoryMarkers[0].category_code, map);
+          }
         }
       }}
     >
