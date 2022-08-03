@@ -11,8 +11,8 @@ function StoreInfo() {
     <div
       style={{
         border: 'solid 1px',
-        width: '100vw',
-        height: '100vh',
+        width: '360px',
+        height: '640px',
         overflow: 'auto',
         scrollbarWidth: 'none',
         fontFamily: 'nanum',

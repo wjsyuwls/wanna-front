@@ -1,18 +1,53 @@
+.font_cute {
+  font-family: 'cute';
+}
+
 /* 메인페이지 css */
-.main_photo {
-  height: auto;
-  max-width: 50%;
+.whole_container {
+  border: solid 1px;
+  height: 640px;
+  width: 360px;
+  overflow: auto;
+  scrollbar-width: none;
+  font-family: 'nanum';
 }
 
-/* 스크롤바 숨기기*/
-.box {
-  -ms-overflow-style: none;
-}
-.box::-webkit-scrollbar {
-  display: none;
+/* nav */
+.nav_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 8px 0px 8px;
 }
 
-/* 검색 css */
+.nav_logo {
+  font-size: 50px;
+  font-family: 'cute';
+}
+
+.nav_btn {
+  border: none;
+  background-color: white;
+}
+
+.nav_btn_img {
+  width: 40px;
+  height: 40px;
+}
+
+.nav_profile_img {
+  width: 60px;
+  height: 60px;
+  border-radius: 70%;
+}
+
+/* body */
+.body_container {
+  height: 400px;
+}
+
+/* 검색 */
 .inner {
   position: relative;
   width: 80%;
@@ -20,6 +55,7 @@
   margin: 20px auto;
   border: 1px solid #bdc1c6;
   border-radius: 20px;
+  border-bottom: solid 1px;
 }
 
 input {
@@ -29,6 +65,17 @@ input {
   border: 0px;
   font-size: 16px;
   outline: none;
+}
+
+.search_box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.search_img {
+  width: 50px;
+  height: 50px;
 }
 
 .searching {
@@ -47,6 +94,33 @@ i:hover {
   top: 20%;
 }
 
-.fa-keyboard {
-  margin-right: 10px;
+/* 이벤트 버튼 */
+.event_container {
+  border-bottom: double 3px;
+  padding-bottom: 10px;
+}
+
+.event_btn {
+  height: 80px;
+  width: 90px;
+  margin: 0px 2px 0px 2px;
+}
+
+/* 실시간 코인 시세 */
+.coin_container {
+  margin: 15px 10px 10px 10px;
+  border-bottom: double 3px;
+}
+
+/* 베스트 리뷰 */
+.review_container {
+  padding: 10px;
+}
+
+.review_radius {
+  border-radius: 15px;
+}
+
+.review_font_size {
+  font-size: 20px;
 }
