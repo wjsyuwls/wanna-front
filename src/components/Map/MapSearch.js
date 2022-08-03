@@ -5,13 +5,13 @@ import { BsSearch } from 'react-icons/bs';
 import $ from 'jquery';
 import geojson from './json/geo.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import apis from '../../apis/index.js';
 
 export default function MapSearch({
   map,
   setPlace,
   setSearchMarkers,
   verifyPlace,
+  setMoveCenter,
 }) {
   const [inputPlace, setInputPlace] = React.useState('');
 
@@ -39,6 +39,7 @@ export default function MapSearch({
 
           bounds.extend(new kakao.maps.LatLng(search.y, search.x));
 
+          // 카카오 api로 받아온 데이터에서 검증된 장소와 위도, 경도가 일치한 데이터 찾기
           const returnIndex = verifyPlace.findIndex((verify) => {
             return verify.x == x && verify.y == y;
           });
@@ -142,6 +143,7 @@ export default function MapSearch({
         onClick={() => {
           setPlace(inputPlace);
           searchPlaces();
+          setMoveCenter(null);
           $('#input').val('');
         }}
       />

@@ -5,22 +5,21 @@ import { login, addStatus } from '../../../reducers/userSlice';
 import styles from './Google.module.css';
 import apis from '../../../apis/index.js';
 
-// 로그아웃은 카카오와 기능이 겹쳐 패스
-const GoogleLogin = () => {
+export default function GoogleLogin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const googleLogin = async () => {
+    // 유저정보 들고오기
     const userAuth = await signInWithGoogle();
     dispatch(
       login({
         email: userAuth.user.email,
-        name: userAuth.user.displayName,
       }),
     );
 
     const body = {
-      id: userAuth.user.email,
+      email: userAuth.user.email,
     };
 
     await apis.post('/api/isUser', body).then((res) => {
@@ -47,6 +46,4 @@ const GoogleLogin = () => {
       </button>
     </div>
   );
-};
-
-export default GoogleLogin;
+}

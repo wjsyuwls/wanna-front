@@ -11,6 +11,7 @@ function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.reducer.user);
+  const [nickname, setNickname] = useState('');
   const [address, setAddress] = useState('');
 
   const connectMetamask = async () => {
@@ -83,8 +84,8 @@ function Register() {
 
   const submitHandler = () => {
     const body = {
-      id: user.email,
-      name: user.name,
+      email: user.email,
+      nickname: nickname,
       address: address, // 공백 문자 이슈
     };
     apis.post('/api/register', body).then((result) => {
@@ -109,6 +110,18 @@ function Register() {
         <div style={{ width: '100%' }}>
           <div className={styles.label}>이메일 주소</div>
           <div className={styles.email}>{user.email}</div>
+        </div>
+        <div style={{ width: '100%' }}>
+          <div className={styles.label}>닉네임</div>
+          <input
+            type="text"
+            placeholder="nickname"
+            spellCheck="false"
+            className={styles.input}
+            onChange={(e) => {
+              setNickname(e.target.value);
+            }}
+          />
         </div>
         <div style={{ width: '100%' }}>
           <div className={styles.label}>개인지갑주소</div>

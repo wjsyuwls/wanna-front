@@ -5,12 +5,12 @@ import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { KakaoLogin, KakaoLogout } from './components/Login/Kakao/Auth';
 //pages
-import Main from './pages/Main/MainPage/MainPage';
-import MyInfo from './pages/Main/MyInfo/MyInfo';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import Trip from './pages/Trip/Trip';
+import Main from './pages/Main/MainPage/MainPage';
+import MyInfo from './pages/Main/MyInfo/MyInfo';
 import MapPage from './pages/Map/MapPage';
+import Trip from './pages/Trip/Trip';
 import StoreInfo from './pages/PlaceDetail/StoreInfo/StoreInfo';
 import PlaceReview from './pages/PlaceReview/PlaceReview';
 

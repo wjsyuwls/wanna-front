@@ -1,13 +1,6 @@
 import { MapMarker } from 'react-kakao-maps-sdk';
 
-export default function MapMarkers({
-  marker,
-  setCurrentMarker,
-  searchMarkers,
-  categoryMarkers,
-}) {
-  console.log(marker);
-
+export default function MapMarkers({ marker, setCurrentMarker }) {
   let img = '';
 
   if (marker.category_code === 'AT4') {

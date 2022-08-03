@@ -31,7 +31,7 @@ const KakaoLogin = () => {
       window.Kakao.init(process.env.REACT_APP_KAKAO_REST_API_KEY);
       // access token 설정
       window.Kakao.Auth.setAccessToken(res.data.access_token);
-
+      // 유저정보 들고오기
       const user = await window.Kakao.API.request({
         url: '/v2/user/me',
       });
@@ -39,12 +39,11 @@ const KakaoLogin = () => {
       dispatch(
         login({
           email: user.kakao_account.email,
-          name: user.properties.nickname,
         }),
       );
 
       const body = {
-        id: user.kakao_account.email,
+        email: user.kakao_account.email,
       };
 
       await apis.post('/api/isUser', body).then((res) => {
@@ -70,8 +69,6 @@ const KakaoLogin = () => {
   useEffect(() => {
     getToken();
   }, []);
-
-  return null;
 };
 
 const KakaoLogout = () => {
@@ -81,8 +78,6 @@ const KakaoLogout = () => {
   localStorage.clear();
   dispatch(logout());
   navigate('/');
-
-  return null;
 };
 
 export { KakaoLogin, KakaoLogout };
