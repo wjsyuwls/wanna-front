@@ -155,7 +155,7 @@ function Trip() {
         <div className={styles.main_row6}>
           <h3
             onClick={() => {
-              navigate('/Placereview');
+              navigate('/ReviewBoard');
             }}
           >
             베스트 리뷰

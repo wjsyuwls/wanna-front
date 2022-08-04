@@ -4,6 +4,7 @@
   border: solid 1px;
   height: 640px;
   width: 360px;
+  padding: 10px;
   overflow: auto;
   scrollbar-width: none;
   font-family: 'cafe';

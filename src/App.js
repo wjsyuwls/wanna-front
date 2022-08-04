@@ -12,7 +12,7 @@ import MyInfo from './pages/Main/MyInfo/MyInfo';
 import MapPage from './pages/Map/MapPage';
 import Trip from './pages/Trip/Trip';
 import StoreInfo from './pages/PlaceDetail/StoreInfo/StoreInfo';
-import PlaceReview from './pages/PlaceReview/PlaceReview';
+import ReviewBoard from './pages/ReviewBoard/ReviewBoard';
 
 function App() {
   const user = useSelector((state) => state.reducer.user);
@@ -33,7 +33,7 @@ function App() {
         <Route path="/goTrip" element={<Trip />} />
         <Route path="/map" element={<MapPage />} />
         <Route path="/storeInfo" element={<StoreInfo />} />
-        <Route path="/placereview" element={<PlaceReview />} />
+        <Route path="/ReviewBoard" element={<ReviewBoard />} />
       </Routes>
     </div>
   );

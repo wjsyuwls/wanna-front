@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './PlaceReview.css';
+import './ReviewBoard.css';
 import { Table, Button, Card, ListGroup, ProgressBar } from 'react-bootstrap';
 import apis from '../../apis';
 import { AwesomeButton } from 'react-awesome-button';
 
-function Review2() {
+function ReviewBoard() {
   const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState(null);
   const [selectedId2, setSelectedId2] = useState(null);
@@ -224,4 +224,4 @@ function Modal2({ notVerifyReview, selectedId2 }) {
   );
 }
 
-export default Review2;
+export default ReviewBoard;
