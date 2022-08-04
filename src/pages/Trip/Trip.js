@@ -11,26 +11,46 @@ function Trip() {
   let [경상, set경상] = useState(false);
   let [부산, set부산] = useState(false);
   let [전라, set전라] = useState(false);
-  let [강원, set강원] = useState(false);
   let [충청, set충청] = useState(false);
   let [제주, set제주] = useState(false);
 
   return (
-    <div className={styles.container} style={{ overflow: 'auto' }}>
+    <div className={styles.container}>
       <div className={styles.main_container}>
-        <div
-          className={styles.main_row1}
-          style={{ fontFamily: 'cute', fontSize: '30px', fontWeight: '600' }}
-          onClick={() => {
-            navigate('/');
-          }}
-        >
-          WANNA
+        <div className={styles.main_row1}>
+          {/* 뒤로가기  */}
+          <img
+            className="nav_back"
+            onClick={() => {
+              navigate(-1);
+            }}
+            src="/img/back.png"
+          ></img>
+
+          {/* 타이틀 */}
+          <div>
+            <h2 className="nav_title">여행가기</h2>
+          </div>
+
+          {/* 네비게이션바 */}
+          <button
+            style={{
+              border: 'none',
+              backgroundColor: 'white',
+            }}
+          >
+            <img className="nav_btn_img" src="/img/menu.png"></img>
+          </button>
         </div>
         <div className={styles.main_row2}>
           <input
             placeholder="가고싶은 곳을 찾아보세요."
-            style={{ fontSize: '20px', height: '25px', width: '80vw' }}
+            style={{
+              fontSize: '20px',
+              height: '25px',
+              width: '80vw',
+              background: '#eee',
+            }}
           />
           <img
             src="img/search.svg"
@@ -51,7 +71,6 @@ function Trip() {
                 <ListGroup variant="flush">
                   <ListGroup.Item>홍대/합정</ListGroup.Item>
                   <ListGroup.Item>강남</ListGroup.Item>
-                  <ListGroup.Item>압구정/가로수길</ListGroup.Item>
                 </ListGroup>
               </div>
               <div className={styles.sub_col2}>
@@ -94,14 +113,6 @@ function Trip() {
                     경상
                   </ListGroup.Item>
                   {경상 == true ? <Modal경상 /> : null}
-                  <ListGroup.Item
-                    onClick={() => {
-                      set강원(!강원);
-                    }}
-                  >
-                    강원
-                  </ListGroup.Item>
-                  {강원 == true ? <Modal강원 /> : null}
                   <ListGroup.Item
                     onClick={() => {
                       set제주(!제주);
@@ -300,6 +311,7 @@ function Modal경상() {
     <>
       <ListGroup variant="flush">
         <ListGroup.Item>경상전체</ListGroup.Item>
+        <ListGroup.Item>✯거제시✯</ListGroup.Item>
       </ListGroup>
     </>
   );
@@ -310,16 +322,6 @@ function Modal전라() {
     <>
       <ListGroup variant="flush">
         <ListGroup.Item>전라전체</ListGroup.Item>
-      </ListGroup>
-    </>
-  );
-}
-
-function Modal강원() {
-  return (
-    <>
-      <ListGroup variant="flush">
-        <ListGroup.Item>강원전체</ListGroup.Item>
       </ListGroup>
     </>
   );
