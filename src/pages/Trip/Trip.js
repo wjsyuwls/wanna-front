@@ -5,14 +5,6 @@ import { Button, ListGroup, Carousel } from 'react-bootstrap';
 
 function Trip() {
   const navigate = useNavigate();
-  let [서울, set서울] = useState(false);
-  let [경기, set경기] = useState(false);
-  let [인천, set인천] = useState(false);
-  let [경상, set경상] = useState(false);
-  let [부산, set부산] = useState(false);
-  let [전라, set전라] = useState(false);
-  let [충청, set충청] = useState(false);
-  let [제주, set제주] = useState(false);
 
   return (
     <div className={styles.container}>
@@ -20,7 +12,7 @@ function Trip() {
         <div className={styles.main_row1}>
           {/* 뒤로가기  */}
           <img
-            className="nav_back"
+            className={styles.nav_back}
             onClick={() => {
               navigate(-1);
             }}
@@ -29,7 +21,7 @@ function Trip() {
 
           {/* 타이틀 */}
           <div>
-            <h2 className="nav_title">여행가기</h2>
+            <h2 className={styles.nav_title}>여행가기</h2>
           </div>
 
           {/* 네비게이션바 */}
@@ -39,7 +31,7 @@ function Trip() {
               backgroundColor: 'white',
             }}
           >
-            <img className="nav_btn_img" src="/img/menu.png"></img>
+            <img className={styles.nav_btn_img} src="/img/menu.png"></img>
           </button>
         </div>
         <div className={styles.main_row2}>
@@ -82,87 +74,7 @@ function Trip() {
             </div>
           </div>
         </div>
-
-        <div className={styles.main_row5}>
-          <div className={styles.place_container}>
-            <h3>전체 지역</h3>
-            <div className={styles.sub_container1}>
-              <div className={styles.sub_col1}>
-                <ListGroup variant="flush">
-                  <ListGroup.Item
-                    onClick={() => {
-                      set서울(!서울);
-                    }}
-                  >
-                    서울
-                  </ListGroup.Item>
-                  {서울 == true ? <Modal서울 /> : null}
-                  <ListGroup.Item
-                    onClick={() => {
-                      set인천(!인천);
-                    }}
-                  >
-                    인천
-                  </ListGroup.Item>
-                  {인천 == true ? <Modal인천 /> : null}
-                  <ListGroup.Item
-                    onClick={() => {
-                      set경상(!경상);
-                    }}
-                  >
-                    경상
-                  </ListGroup.Item>
-                  {경상 == true ? <Modal경상 /> : null}
-                  <ListGroup.Item
-                    onClick={() => {
-                      set제주(!제주);
-                    }}
-                  >
-                    제주
-                  </ListGroup.Item>
-                  {제주 == true ? <Modal제주 /> : null}
-                </ListGroup>
-              </div>
-              <div className={styles.sub_col2}>
-                <ListGroup variant="flush">
-                  <ListGroup.Item
-                    onClick={() => {
-                      set경기(!경기);
-                    }}
-                  >
-                    경기
-                  </ListGroup.Item>
-                  {경기 == true ? <Modal경기 /> : null}
-                  <ListGroup.Item
-                    onClick={() => {
-                      set부산(!부산);
-                    }}
-                  >
-                    부산
-                  </ListGroup.Item>
-                  {부산 == true ? <Modal부산 /> : null}
-                  <ListGroup.Item
-                    onClick={() => {
-                      set전라(!전라);
-                    }}
-                  >
-                    전라
-                  </ListGroup.Item>
-                  {전라 == true ? <Modal전라 /> : null}
-                  <ListGroup.Item
-                    onClick={() => {
-                      set충청(!충청);
-                    }}
-                  >
-                    충청
-                  </ListGroup.Item>
-                  {충청 == true ? <Modal충청 /> : null}
-                </ListGroup>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <AllPlace />
         <div className={styles.main_row6}>
           <h3
             onClick={() => {
@@ -172,6 +84,101 @@ function Trip() {
             베스트 리뷰
           </h3>
           <Review_image />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 컴포넌트
+
+// 전체지역
+function AllPlace() {
+  let [서울, set서울] = useState(false);
+  let [경기, set경기] = useState(false);
+  let [인천, set인천] = useState(false);
+  let [경상, set경상] = useState(false);
+  let [부산, set부산] = useState(false);
+  let [전라, set전라] = useState(false);
+  let [충청, set충청] = useState(false);
+  let [제주, set제주] = useState(false);
+  return (
+    <div className={styles.main_row5}>
+      <div className={styles.place_container}>
+        <h3>전체 지역</h3>
+        <div className={styles.sub_container1}>
+          <div className={styles.sub_col1}>
+            <ListGroup variant="flush">
+              <ListGroup.Item
+                onClick={() => {
+                  set서울(!서울);
+                }}
+              >
+                서울
+              </ListGroup.Item>
+              {서울 == true ? <Modal서울 /> : null}
+              <ListGroup.Item
+                onClick={() => {
+                  set인천(!인천);
+                }}
+              >
+                인천
+              </ListGroup.Item>
+              {인천 == true ? <Modal인천 /> : null}
+              <ListGroup.Item
+                onClick={() => {
+                  set경상(!경상);
+                }}
+              >
+                경상
+              </ListGroup.Item>
+              {경상 == true ? <Modal경상 /> : null}
+              <ListGroup.Item
+                onClick={() => {
+                  set제주(!제주);
+                }}
+              >
+                제주
+              </ListGroup.Item>
+              {제주 == true ? <Modal제주 /> : null}
+            </ListGroup>
+          </div>
+          <div className={styles.sub_col2}>
+            <ListGroup variant="flush">
+              <ListGroup.Item
+                onClick={() => {
+                  set경기(!경기);
+                }}
+              >
+                경기
+              </ListGroup.Item>
+              {경기 == true ? <Modal경기 /> : null}
+              <ListGroup.Item
+                onClick={() => {
+                  set부산(!부산);
+                }}
+              >
+                부산
+              </ListGroup.Item>
+              {부산 == true ? <Modal부산 /> : null}
+              <ListGroup.Item
+                onClick={() => {
+                  set전라(!전라);
+                }}
+              >
+                전라
+              </ListGroup.Item>
+              {전라 == true ? <Modal전라 /> : null}
+              <ListGroup.Item
+                onClick={() => {
+                  set충청(!충청);
+                }}
+              >
+                충청
+              </ListGroup.Item>
+              {충청 == true ? <Modal충청 /> : null}
+            </ListGroup>
+          </div>
         </div>
       </div>
     </div>

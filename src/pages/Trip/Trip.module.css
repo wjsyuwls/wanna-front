@@ -17,6 +17,7 @@ h5 {
 }
 
 .container {
+  font-family: 'cafe';
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -28,20 +29,24 @@ h5 {
   width: 60px;
   height: 60px;
   border-radius: 70%;
+  margin-top: 5px;
 }
 
 .nav_title {
   font-size: 45px;
   font-family: 'cafe';
+  margin-bottom: 0;
 }
 
 .nav_btn_img {
   width: 40px;
   height: 40px;
+  margin-bottom: 10px;
 }
 
 /* 메인 */
 .main_container {
+  font-family: 'cafe';
   display: grid;
   grid-column: 1/2;
   grid-template-rows: 50px 0.3fr 0.1fr 0.3fr 1fr 1fr;
@@ -51,11 +56,12 @@ h5 {
 }
 
 .main_row1 {
+  font-family: 'cute';
   font-size: 45px;
-  font-family: 'cafe';
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 3px 8px 0;
 }
 
 .main_row2 {
@@ -89,6 +95,7 @@ h5 {
 
 .main_row5 {
   border-bottom: thick double;
+  font-family: 'cafe';
 }
 
 .main_row6 {
