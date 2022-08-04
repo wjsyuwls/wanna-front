@@ -25,14 +25,7 @@ function MyInfo() {
         </div>
 
         {/* 네비게이션바 */}
-        <button
-          style={{
-            border: 'none',
-            backgroundColor: 'white',
-          }}
-        >
-          <img className="nav_btn_img" src="/img/menu.png"></img>
-        </button>
+        <img className="nav_btn_img" src="/img/menu.png"></img>
       </div>
       {/* body */}
       <div>
@@ -41,30 +34,30 @@ function MyInfo() {
             <img className="profile_img" src="./img/profile_sample.png"></img>
             <h4>닉네임</h4>
           </div>
-          <div className="info_table_container">
-            <table>
+          <div className="carrier_table_container ">
+            <table font_big>
               <tr>
-                <th className="table_margin">여행자 Lv: </th>
-                <td className="font_small table_center">3</td>
+                <th className="info_font_big ">여행자 Lv: </th>
+                <td className="info_font_small table_center">3</td>
               </tr>
               <tr>
-                <th className="table_margin">큐레이터 Lv: </th>
-                <td className="font_small table_center">2</td>
+                <th className="info_font_big">큐레이터 Lv: </th>
+                <td className="info_font_small table_center">2</td>
               </tr>
               <tr>
-                <th className="table_margin">보유 토큰 (WNN): </th>
-                <td className="font_small table_center">532</td>
+                <th className="info_font_big">보유 토큰 (WNN): </th>
+                <td className="info_font_small table_center">532</td>
               </tr>
               <tr>
-                <th className="table_margin">획득한 칭호: </th>
-                <td className="font_small table_center">
-                  <h5 className="font_small">5개</h5>
+                <th className="info_font_big">획득 칭호: </th>
+                <td className="info_font_small table_center">
+                  <h5 className="info_font_small">5개</h5>
                   <a href="https://www.naver.com">보러가기</a>
                 </td>
               </tr>
               <tr>
-                <th className="table_margin">왔나 여행 횟수 </th>
-                <td className="font_small table_center">
+                <th className="info_font_big">여행 횟수 </th>
+                <td className="info_font_small table_center">
                   &nbsp;&nbsp;24회&nbsp;&nbsp;
                 </td>
               </tr>
@@ -81,33 +74,33 @@ function MyInfo() {
         <div className="carrier_container">
           <div className="carrier_profile_container">
             <img className="carrier_img" src="/img/carrier2_sample.png"></img>
-            <h4>캐리어 이름</h4>
+            <h4 className="info_font_big">캐리어 이름</h4>
           </div>
           <div className="carrier_table_container">
             <table>
               <tr>
-                <th className="table_margin">캐리어 Lv: </th>
-                <td className="font_small table_center">3</td>
+                <th className="info_font_big">캐리어 Lv: </th>
+                <td className="info_font_small table_center">3</td>
               </tr>
               <tr>
-                <th className="table_margin">경험치: </th>
-                <td className="font_small table_center">25/350</td>
+                <th className="info_font_big">경험치: </th>
+                <td className="info_font_small table_center">25/350</td>
               </tr>
               <tr>
-                <th className="table_margin">행운: </th>
-                <td className="font_small table_center">54</td>
+                <th className="info_font_big">행운: </th>
+                <td className="info_font_small table_center">54</td>
               </tr>
               <tr>
-                <th className="table_margin">용기: </th>
-                <td className="font_small table_center">15</td>
+                <th className="info_font_big">용기: </th>
+                <td className="info_font_small table_center">15</td>
               </tr>
               <tr>
-                <th className="table_margin">지혜: </th>
-                <td className="font_small table_center">64</td>
+                <th className="info_font_big">지혜: </th>
+                <td className="info_font_small table_center">64</td>
               </tr>
               <tr>
-                <th className="table_margin">
-                  <pre className="font_cafe">획득한 지역뱃지: </pre>
+                <th className="info_font_big">
+                  <pre className="info_font_big">획득한 지역뱃지: </pre>
                 </th>
                 <a href="https://www.naver.com">보러 가기</a>
               </tr>

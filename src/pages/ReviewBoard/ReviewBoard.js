@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ReviewBoard.css';
-import { Table, Button, Card, ListGroup, ProgressBar } from 'react-bootstrap';
+import { Table, Button, ProgressBar } from 'react-bootstrap';
 import apis from '../../apis';
 import { AwesomeButton } from 'react-awesome-button';
-
+import 'react-awesome-button/dist/styles.css';
 function ReviewBoard() {
   const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState(null);
@@ -43,13 +43,13 @@ function ReviewBoard() {
             <h2 className="head_title">리뷰 게시판</h2>
           </div>
           {/* 네비게이션바 */}
-          <img className="head_add_img" src="/img/add.png"></img>
+          <img className="head_menu_img" src="/img/menu.png"></img>
         </div>
 
         {/* body */}
         <div>
-          <div className="review_head">
-            <h3>등록된 리뷰</h3>
+          <div className="review_head font_small">
+            <h3 className="font_small">검증된 리뷰들</h3>
 
             {/* 필터버튼 */}
             <img
@@ -58,20 +58,19 @@ function ReviewBoard() {
             />
           </div>
 
-          {/* 등록된 리뷰 게시글 */}
+          {/* 등록된 리뷰 리스트 */}
 
           <Table striped bordered hover size="sm">
             <thead style={{ background: 'skyblue', border: 1 }}>
-              <tr>
-                <th>장소명</th>
+              <tr className="content_center">
                 <th>제목</th>
-                <th>닉네임</th>
+                <th>작성자</th>
                 <th>평점</th>
                 <th>좋아요</th>
                 <th>작성일</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="review_body">
               {verifyReview.map((verifyReview) => (
                 <React.Fragment key={verifyReview.id}>
                   <tr
@@ -84,7 +83,6 @@ function ReviewBoard() {
                       }
                     }}
                   >
-                    <td> {verifyReview.place_name} </td>
                     <td> {verifyReview.title} </td>
                     <td> {verifyReview.nickname} </td>
                     <td> {verifyReview.score} </td>
@@ -106,23 +104,30 @@ function ReviewBoard() {
           )}
         </div>
 
-        {/* 검증 중인 리뷰 */}
+        {/* 검증 중인 리뷰 리스트 */}
         <div>
-          <div className="sub_row1">
-            <h3>검증 중인 리뷰</h3>
+          <div className="font_small">
+            <h3 className="font_small ">투표 중인 리뷰들</h3>
+            <AwesomeButton
+              action={() => {
+                navigate('/AddReview');
+              }}
+              type="secondary"
+            >
+              리뷰 쓰기
+            </AwesomeButton>
           </div>
           <Table striped bordered hover size="sm">
-            <thead style={{ background: 'cornflowerblue', border: 1 }}>
+            <thead style={{ background: 'skyblue', border: 1 }}>
               <tr>
-                <th>장소명</th>
-                <th>제목</th>
-                <th>닉네임</th>
-                <th>평점</th>
-                <th>좋아요</th>
-                <th>작성일</th>
+                <th content_center>제목</th>
+                <th content_center>작성자</th>
+                <th content_center>평점</th>
+                <th content_center>좋아요</th>
+                <th content_center>작성일</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="review_body">
               {notVerifyReview.map((notVerifyReview) => (
                 <React.Fragment key={notVerifyReview.id}>
                   <tr
@@ -135,7 +140,6 @@ function ReviewBoard() {
                       }
                     }}
                   >
-                    <td>{notVerifyReview.place_name}</td>
                     <td>{notVerifyReview.title}</td>
                     <td>{notVerifyReview.nickname}</td>
                     <td>{notVerifyReview.score}</td>
@@ -168,23 +172,23 @@ function Modal1({ verifyReview, selectedId }) {
   const verify = verifyReview.find((d) => d.id === selectedId);
 
   return (
-    <Card style={{ width: '22.4rem' }}>
-      <Card.Img variant="top" src={verify.img} />
-      <Card.Body>
-        <Card.Title>제목: {verify.title}</Card.Title>
-        <Card.Text>{verify.text}</Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item>닉네임: {verify.nickname}</ListGroup.Item>
-        <ListGroup.Item>
-          찬/반 결과
-          <ProgressBar>
-            <ProgressBar striped variant="info" now={70} key={1} />
-            <ProgressBar striped variant="danger" now={40} key={3} />
-          </ProgressBar>
-        </ListGroup.Item>
-      </ListGroup>
-    </Card>
+    <div className="modal_container">
+      <img className="modal_img" variant="top" src={verify.img} />
+      <div>
+        <h2 className="modal_title">제목: {verify.title}</h2>
+      </div>
+      <div>
+        <h3 className="modal_writer">닉네임: {verify.nickname}</h3>
+      </div>
+      <div>
+        <h4 className="modal_content">{verify.content}</h4>
+      </div>
+      찬/반 결과
+      <ProgressBar>
+        <ProgressBar striped variant="info" now={70} key={1} />
+        <ProgressBar striped variant="danger" now={40} key={3} />
+      </ProgressBar>
+    </div>
   );
 }
 

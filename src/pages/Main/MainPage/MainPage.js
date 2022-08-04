@@ -6,13 +6,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from 'react';
 import './MainPage.css';
-import {
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  BrowserRouter as Router,
-} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function MainPage() {
   let navigate = useNavigate();
