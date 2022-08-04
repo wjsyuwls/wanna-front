@@ -76,7 +76,6 @@ function Review2() {
                 <React.Fragment key={verifyReview.id}>
                   <tr
                     onClick={() => {
-                      setSelectedId2(null);
                       if (selectedId === verifyReview.id) {
                         setSelectedId(null);
                       } else {
@@ -127,7 +126,6 @@ function Review2() {
                 <React.Fragment key={notVerifyReview.id}>
                   <tr
                     onClick={() => {
-                      setSelectedId(null);
                       if (selectedId2 === notVerifyReview.id) {
                         setSelectedId2(null);
                       } else {
@@ -193,32 +191,32 @@ function Modal2({ notVerifyReview, selectedId2 }) {
   const notVerify = notVerifyReview.find((d) => d.id === selectedId2);
   const now = 27;
   return (
-    <div className="modal_container">
-      <img className="modal_img" variant="top" src={notVerify.img} />
+    <div style={{ width: '22.4rem' }}>
+      <img className="veri_img" variant="top" src={notVerify.img} />
       <div>
-        <h2 className="modal_title">제목: {notVerify.title}</h2>
+        <h2>제목: {notVerify.title}</h2>
+        <h4>{notVerify.text}</h4>
       </div>
-      <div>
-        <h3 className="modal_writer">닉네임: {notVerify.nickname}</h3>
-      </div>
-      <div>
-        <h4 className="modal_content">{notVerify.content}</h4>
-      </div>
-
-      <div className="modal_progress">
-        진행도
-        <ProgressBar now={now} label={`${now}%`} />
-      </div>
-      <div className="modal_vote">
-        <Button
-          variant="primary"
-          style={{ marginRight: '50px', width: '100px' }}
-        >
-          찬성
-        </Button>
-        <Button variant="danger" style={{ marginLeft: '50px', width: '100px' }}>
-          반대
-        </Button>
+      <div className="list-group-flush">
+        <h3>닉네임: {notVerify.nickname}</h3>
+        <div>
+          진행도
+          <ProgressBar now={now} label={`${now}%`} />
+        </div>
+        <div>
+          <Button
+            variant="primary"
+            style={{ marginRight: '50px', width: '100px' }}
+          >
+            찬성
+          </Button>
+          <Button
+            variant="danger"
+            style={{ marginLeft: '50px', width: '100px' }}
+          >
+            반대
+          </Button>
+        </div>
       </div>
     </div>
   );

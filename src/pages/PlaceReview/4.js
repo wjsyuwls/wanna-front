@@ -72,27 +72,12 @@ function Review2() {
               </tr>
             </thead>
             <tbody>
-              {verifyReview.map((verifyReview) => (
-                <React.Fragment key={verifyReview.id}>
-                  <tr
-                    onClick={() => {
-                      setSelectedId2(null);
-                      if (selectedId === verifyReview.id) {
-                        setSelectedId(null);
-                      } else {
-                        setSelectedId(verifyReview.id);
-                      }
-                    }}
-                  >
-                    <td> {verifyReview.place_name} </td>
-                    <td> {verifyReview.title} </td>
-                    <td> {verifyReview.nickname} </td>
-                    <td> {verifyReview.score} </td>
-                    <td> {verifyReview._like} </td>
-                    <td> {verifyReview.date} </td>
-                  </tr>
-                </React.Fragment>
-              ))}
+              <Tables1
+                verifyReview={verifyReview}
+                setSelectedId={setSelectedId}
+                setSelectedId2={selectedId2}
+                selectedId={selectedId}
+              />
             </tbody>
           </Table>
           {selectedId && (
@@ -123,27 +108,12 @@ function Review2() {
               </tr>
             </thead>
             <tbody>
-              {notVerifyReview.map((notVerifyReview) => (
-                <React.Fragment key={notVerifyReview.id}>
-                  <tr
-                    onClick={() => {
-                      setSelectedId(null);
-                      if (selectedId2 === notVerifyReview.id) {
-                        setSelectedId2(null);
-                      } else {
-                        setSelectedId2(notVerifyReview.id);
-                      }
-                    }}
-                  >
-                    <td>{notVerifyReview.place_name}</td>
-                    <td>{notVerifyReview.title}</td>
-                    <td>{notVerifyReview.nickname}</td>
-                    <td>{notVerifyReview.score}</td>
-                    <td>{notVerifyReview._like}</td>
-                    <td>{notVerifyReview.date}</td>
-                  </tr>
-                </React.Fragment>
-              ))}
+              <Tables2
+                notVerifyReview={notVerifyReview}
+                setSelectedId2={setSelectedId2}
+                selectedId2={selectedId2}
+                selectedId={selectedId}
+              />
             </tbody>
           </Table>
         </div>
@@ -162,6 +132,59 @@ function Review2() {
 }
 
 // 컴포넌트
+
+// 검증 된 리뷰 리스트
+function Tables1({ verifyReview, setSelectedId, setSelectedId2, selectedId }) {
+  return verifyReview.map((verifyReview) => (
+    <React.Fragment key={verifyReview.id}>
+      <tr
+        onClick={() => {
+          if (selectedId === verifyReview.id) {
+            setSelectedId(null);
+          } else {
+            setSelectedId(verifyReview.id);
+          }
+        }}
+      >
+        <td> {verifyReview.place_name} </td>
+        <td> {verifyReview.title} </td>
+        <td> {verifyReview.nickname} </td>
+        <td> {verifyReview.score} </td>
+        <td> {verifyReview._like} </td>
+        <td> {verifyReview.date} </td>
+      </tr>
+    </React.Fragment>
+  ));
+}
+
+// 검증 중인 리뷰 리스트
+function Tables2({
+  notVerifyReview,
+  setSelectedId2,
+  setSelectedId,
+  selectedId2,
+}) {
+  return notVerifyReview.map((notVerifyReview) => (
+    <React.Fragment key={notVerifyReview.id}>
+      <tr
+        onClick={() => {
+          if (selectedId2 === notVerifyReview.id) {
+            setSelectedId2(null);
+          } else {
+            setSelectedId2(notVerifyReview.id);
+          }
+        }}
+      >
+        <td>{notVerifyReview.place_name}</td>
+        <td>{notVerifyReview.title}</td>
+        <td>{notVerifyReview.nickname}</td>
+        <td>{notVerifyReview.score}</td>
+        <td>{notVerifyReview._like}</td>
+        <td>{notVerifyReview.date}</td>
+      </tr>
+    </React.Fragment>
+  ));
+}
 
 // 등록된 리뷰 모달창
 function Modal1({ verifyReview, selectedId }) {
@@ -193,32 +216,32 @@ function Modal2({ notVerifyReview, selectedId2 }) {
   const notVerify = notVerifyReview.find((d) => d.id === selectedId2);
   const now = 27;
   return (
-    <div className="modal_container">
-      <img className="modal_img" variant="top" src={notVerify.img} />
+    <div style={{ width: '22.4rem' }}>
+      <img className="veri_img" variant="top" src={notVerify.img} />
       <div>
-        <h2 className="modal_title">제목: {notVerify.title}</h2>
+        <h2>제목: {notVerify.title}</h2>
+        <h4>{notVerify.text}</h4>
       </div>
-      <div>
-        <h3 className="modal_writer">닉네임: {notVerify.nickname}</h3>
-      </div>
-      <div>
-        <h4 className="modal_content">{notVerify.content}</h4>
-      </div>
-
-      <div className="modal_progress">
-        진행도
-        <ProgressBar now={now} label={`${now}%`} />
-      </div>
-      <div className="modal_vote">
-        <Button
-          variant="primary"
-          style={{ marginRight: '50px', width: '100px' }}
-        >
-          찬성
-        </Button>
-        <Button variant="danger" style={{ marginLeft: '50px', width: '100px' }}>
-          반대
-        </Button>
+      <div className="list-group-flush">
+        <h3>닉네임: {notVerify.nickname}</h3>
+        <div>
+          진행도
+          <ProgressBar now={now} label={`${now}%`} />
+        </div>
+        <div>
+          <Button
+            variant="primary"
+            style={{ marginRight: '50px', width: '100px' }}
+          >
+            찬성
+          </Button>
+          <Button
+            variant="danger"
+            style={{ marginLeft: '50px', width: '100px' }}
+          >
+            반대
+          </Button>
+        </div>
       </div>
     </div>
   );
