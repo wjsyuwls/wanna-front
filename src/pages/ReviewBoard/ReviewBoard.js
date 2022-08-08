@@ -32,156 +32,157 @@ function ReviewBoard() {
   }, []);
 
   return (
-    <div>
-      <div className="whole_container">
-        {/* header */}
-        <div className="head_container">
-          {/* 뒤로가기  */}
+    <div
+      className="whole_container"
+      style={{ width: '100vw', height: '100vh' }}
+    >
+      {/* header */}
+      <div className="head_container">
+        {/* 뒤로가기  */}
+        <img
+          className="head_back"
+          onClick={() => {
+            navigate(-1);
+          }}
+          src="/img/back.png"
+        />
+        {/* title */}
+        <div>
+          <h2 className="head_title">리뷰 게시판</h2>
+        </div>
+        {/* navbar */}
+        <img className="head_menu_img" src="/img/menu.png" />
+      </div>
+
+      {/* body */}
+      <div>
+        <div className="review_head font_small">
+          <h3 className="font_small">검증된 리뷰들</h3>
+
+          {/* 필터버튼 */}
           <img
-            className="head_back"
-            onClick={() => {
-              navigate(-1);
-            }}
-            src="/img/back.png"
+            className="filter_img"
+            src="https://cdn-icons-png.flaticon.com/512/3126/3126539.png"
           />
-          {/* title */}
-          <div>
-            <h2 className="head_title">리뷰 게시판</h2>
-          </div>
-          {/* navbar */}
-          <img className="head_menu_img" src="/img/menu.png" />
         </div>
 
-        {/* body */}
-        <div>
-          <div className="review_head font_small">
-            <h3 className="font_small">검증된 리뷰들</h3>
+        {/* verify review list */}
 
-            {/* 필터버튼 */}
-            <img
-              className="filter_img"
-              src="https://cdn-icons-png.flaticon.com/512/3126/3126539.png"
-            />
-          </div>
-
-          {/* verify review list */}
-
-          <Table striped bordered hover size="sm">
-            <thead
-              style={{
-                background: 'skyblue',
-                border: 1,
-                fontSize: '16px',
-                alignContent: 'center',
-              }}
-            >
-              <tr>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>평점</th>
-                <th>좋아요</th>
-                <th>작성일</th>
-              </tr>
-            </thead>
-            <tbody className="review_body">
-              {verifyReview.map((verifyReview) => (
-                <React.Fragment key={verifyReview.id}>
-                  <tr
-                    onClick={() => {
-                      setSelectedId2(null);
-                      if (selectedId === verifyReview.id) {
-                        setSelectedId(null);
-                      } else {
-                        setSelectedId(verifyReview.id);
-                      }
-                    }}
-                  >
-                    <td> {verifyReview.title} </td>
-                    <td> {verifyReview.nickname} </td>
-                    <td> {verifyReview.score} </td>
-                    <td> {verifyReview.like} </td>
-                    <td> {verifyReview.date} </td>
-                  </tr>
-                </React.Fragment>
-              ))}
-            </tbody>
-          </Table>
-          {selectedId && (
-            <div>
-              <Modal1
-                verifyReview={verifyReview}
-                notVerifyReview={notVerifyReview}
-                selectedId={selectedId}
-              ></Modal1>
-            </div>
-          )}
-        </div>
-
-        {/* not verify review list */}
-        <div>
-          <div className="font_small">
-            <h3 className="font_small ">투표 중인 리뷰들</h3>
-            <AwesomeButton
-              action={() => {
-                navigate('/AddReview');
-              }}
-              type="secondary"
-            >
-              리뷰 쓰기
-            </AwesomeButton>
-          </div>
-          <Table striped bordered hover size="sm">
-            <thead
-              style={{
-                background: 'skyblue',
-                border: 1,
-                fontSize: '16px',
-                alignContent: 'center',
-              }}
-            >
-              <tr>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>평점</th>
-                <th>좋아요</th>
-                <th>작성일</th>
-              </tr>
-            </thead>
-            <tbody className="review_body">
-              {notVerifyReview.map((notVerifyReview) => (
-                <React.Fragment key={notVerifyReview.id}>
-                  <tr
-                    onClick={() => {
+        <Table striped bordered hover size="sm">
+          <thead
+            style={{
+              background: 'skyblue',
+              border: 1,
+              fontSize: '16px',
+              alignContent: 'center',
+            }}
+          >
+            <tr>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>평점</th>
+              <th>좋아요</th>
+              <th>작성일</th>
+            </tr>
+          </thead>
+          <tbody className="review_body">
+            {verifyReview.map((verifyReview) => (
+              <React.Fragment key={verifyReview.id}>
+                <tr
+                  onClick={() => {
+                    setSelectedId2(null);
+                    if (selectedId === verifyReview.id) {
                       setSelectedId(null);
-                      if (selectedId2 === notVerifyReview.id) {
-                        setSelectedId2(null);
-                      } else {
-                        setSelectedId2(notVerifyReview.id);
-                      }
-                    }}
-                  >
-                    <td>{notVerifyReview.title}</td>
-                    <td>{notVerifyReview.nickname}</td>
-                    <td>{notVerifyReview.score}</td>
-                    <td>{notVerifyReview._like}</td>
-                    <td>{notVerifyReview.date}</td>
-                  </tr>
-                </React.Fragment>
-              ))}
-            </tbody>
-          </Table>
-        </div>
-        {selectedId2 && (
+                    } else {
+                      setSelectedId(verifyReview.id);
+                    }
+                  }}
+                >
+                  <td> {verifyReview.title} </td>
+                  <td> {verifyReview.nickname} </td>
+                  <td> {verifyReview.score} </td>
+                  <td> {verifyReview.like} </td>
+                  <td> {verifyReview.date} </td>
+                </tr>
+              </React.Fragment>
+            ))}
+          </tbody>
+        </Table>
+        {selectedId && (
           <div>
-            <Modal2
+            <Modal1
               verifyReview={verifyReview}
               notVerifyReview={notVerifyReview}
-              selectedId2={selectedId2}
-              vote={vote}
-            />
+              selectedId={selectedId}
+            ></Modal1>
           </div>
         )}
       </div>
+
+      {/* not verify review list */}
+      <div>
+        <div className="font_small">
+          <h3 className="font_small ">투표 중인 리뷰들</h3>
+          <AwesomeButton
+            action={() => {
+              navigate('/AddReview');
+            }}
+            type="secondary"
+          >
+            리뷰 쓰기
+          </AwesomeButton>
+        </div>
+        <Table striped bordered hover size="sm">
+          <thead
+            style={{
+              background: 'skyblue',
+              border: 1,
+              fontSize: '16px',
+              alignContent: 'center',
+            }}
+          >
+            <tr>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>평점</th>
+              <th>좋아요</th>
+              <th>작성일</th>
+            </tr>
+          </thead>
+          <tbody className="review_body">
+            {notVerifyReview.map((notVerifyReview) => (
+              <React.Fragment key={notVerifyReview.id}>
+                <tr
+                  onClick={() => {
+                    setSelectedId(null);
+                    if (selectedId2 === notVerifyReview.id) {
+                      setSelectedId2(null);
+                    } else {
+                      setSelectedId2(notVerifyReview.id);
+                    }
+                  }}
+                >
+                  <td>{notVerifyReview.title}</td>
+                  <td>{notVerifyReview.nickname}</td>
+                  <td>{notVerifyReview.score}</td>
+                  <td>{notVerifyReview._like}</td>
+                  <td>{notVerifyReview.date}</td>
+                </tr>
+              </React.Fragment>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+      {selectedId2 && (
+        <div>
+          <Modal2
+            verifyReview={verifyReview}
+            notVerifyReview={notVerifyReview}
+            selectedId2={selectedId2}
+            vote={vote}
+          />
+        </div>
+      )}
     </div>
   );
 }
