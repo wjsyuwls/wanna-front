@@ -62,7 +62,12 @@ function MyInfo() {
                 </td>
               </tr>
             </table>
-            <AwesomeButton type="primary">정보 수정</AwesomeButton>
+            <AwesomeButton
+              type="primary"
+              action={() => navigate('/updateInfo')}
+            >
+              정보 수정
+            </AwesomeButton>
           </div>
         </div>
       </div>
