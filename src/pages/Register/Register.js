@@ -51,7 +51,7 @@ function Register() {
   //지갑연결 핸들러
   const connectAddressHandler = (account) => {
     setAddress(account);
-    if (account.length === 42) {
+    if (account.length === 42 && nickname !== '') {
       $('.' + styles.submit).css({
         'background-color': 'rgb(79, 141, 247)',
         'pointer-events': 'initial',
@@ -65,10 +65,29 @@ function Register() {
     }
   };
 
-  //주소입력(input태그) 핸들러
+  // address handler
   const addressHandler = (e) => {
     setAddress(e.target.value);
     if (e.target.value.length === 42) {
+      $('.' + styles.submit).css({
+        'background-color': 'rgb(79, 141, 247)',
+        'pointer-events': 'initial',
+        cursor: 'pointer',
+      });
+    } else {
+      $('.' + styles.submit).css({
+        'background-color': 'lightgray',
+        'pointer-events': 'none',
+      });
+    }
+  };
+
+  // nickname handler
+  const nicknameHandler = (e) => {
+    setNickname(e.target.value);
+    console.log(nickname);
+    console.log(address);
+    if (e.target.value !== '' && address.length === 42) {
       $('.' + styles.submit).css({
         'background-color': 'rgb(79, 141, 247)',
         'pointer-events': 'initial',
@@ -119,7 +138,7 @@ function Register() {
             spellCheck="false"
             className={styles.input}
             onChange={(e) => {
-              setNickname(e.target.value);
+              nicknameHandler(e);
             }}
           />
         </div>

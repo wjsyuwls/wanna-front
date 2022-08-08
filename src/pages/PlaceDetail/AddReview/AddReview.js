@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddReview.css';
+// import './AddReview.css';
 
 function AddReview() {
   return <div>안녕!</div>;
