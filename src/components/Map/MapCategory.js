@@ -33,6 +33,7 @@ export default function MapHeader({
   place,
   verifyPlace,
   setMoveCenter,
+  setCategoryCode,
 }) {
   function searchPlaces(code, map) {
     // 장소 검색 객체를 생성
@@ -106,6 +107,7 @@ export default function MapHeader({
                 } else {
                   const map = mapRef.current;
                   searchPlaces(category.code, map);
+                  setCategoryCode(category.code);
                   setVisible(category.code);
                   setMoveCenter(null);
 

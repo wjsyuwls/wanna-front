@@ -9,6 +9,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Main from './pages/Main/MainPage/MainPage';
 import MyInfo from './pages/Main/MyInfo/MyInfo';
+import UpdateInfo from './pages/Main/UpdateInfo/UpdateInfo';
 import MapPage from './pages/Map/MapPage';
 import Trip from './pages/Trip/Trip';
 import StoreInfo from './pages/PlaceDetail/StoreInfo/StoreInfo';
@@ -31,6 +32,7 @@ function App() {
         <Route path="/oauth/kakao/callback/logout" element={<KakaoLogout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/myInfo" element={<MyInfo />} />
+        <Route path="/UpdateInfo" element={<UpdateInfo />} />
         <Route path="/goTrip" element={<Trip />} />
         <Route path="/map" element={<MapPage />} />
         <Route path="/storeInfo" element={<StoreInfo />} />

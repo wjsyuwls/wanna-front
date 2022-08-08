@@ -20,8 +20,8 @@ export default function MapInfo({
       zIndex={1}
       justifyItems="center"
     >
-      {/* 카테고리 선택 -> 마커 클릭 -> 지도 위치 옮겼을때 */}
-      {categoryMarkers && visible && moveCenter && (
+      {/* category select -> marker click -> move map center */}
+      {categoryMarkers && moveCenter && (
         <MapResearch
           currentMarker={currentMarker}
           verifyPlace={verifyPlace}

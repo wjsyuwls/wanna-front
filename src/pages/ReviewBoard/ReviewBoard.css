@@ -1,4 +1,4 @@
-@import url('https://webfontworld.github.io/seoulnamsan/SeoulNamsan.css');
+/* @import url('https://webfontworld.github.io/seoulnamsan/SeoulNamsan.css'); */
 
 /* 폰트 */
 .font_small {
@@ -12,12 +12,13 @@
 /* 전체 컨테이너 */
 .whole_container {
   border: solid 1px;
-  height: 640px;
-  width: 360px;
-  padding: 5px;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
   overflow: auto;
   scrollbar-width: none;
   font-family: 'cafe';
+  margin: 0;
 }
 
 /* header */
@@ -32,6 +33,7 @@
 .head_title {
   font-size: 37px;
   font-family: 'cafe';
+  margin: 0;
 }
 
 .head_back {
@@ -74,13 +76,12 @@
   height: 550px;
 }
 
-.review_head {
+/* .review_head {
   font-size: 20px;
-}
+} */
 
 .review_body {
-  font-family: 'nanum';
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
   text-align: center;
 }
@@ -94,9 +95,10 @@
 }
 
 .modal_img {
-  border-radius: 20px;
+  border-radius: 3px;
   width: 100%;
   height: 250px;
+  margin-top: 15px;
 }
 
 .modal_title {
@@ -105,11 +107,13 @@
 }
 
 .modal_writer {
-  font-size: 18px;
-  margin: 2px;
+  font-size: 16px;
+  margin: 5px;
+  text-align: left;
 }
 
 .modal_content {
+  margin-top: 15px;
   padding: 10%;
   border: 3px double;
   border-radius: 10%;
