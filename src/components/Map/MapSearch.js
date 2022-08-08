@@ -12,6 +12,7 @@ export default function MapSearch({
   setSearchMarkers,
   verifyPlace,
   setMoveCenter,
+  setZoom,
 }) {
   const [inputPlace, setInputPlace] = React.useState('');
 
@@ -56,7 +57,10 @@ export default function MapSearch({
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정
         map.setBounds(bounds);
 
-        // 지도 애니메이션 렉 현상 폴리곤 더 simply해야함
+        // 검색하면 지도레벨 3으로 설정
+        // setZoom(3);
+
+        // 지도 애니메이션 렉 버그 폴리곤 더 simply해야함
         // polygon();
       }
     }
@@ -129,16 +133,18 @@ export default function MapSearch({
         id="input"
         placeholder="키워드를 입력하세요"
         width="85%"
-        height="30px"
+        height="40px"
         border="1px solid"
-        padding="5px"
-        fontSize="15px"
+        borderRadius="20px"
+        padding="10px"
+        fontSize="16px"
         onChange={(e) => {
           setInputPlace(e.target.value);
         }}
       />
-      <BsSearch
-        style={{ paddingLeft: '5px' }}
+      <img
+        src="/img/search.png"
+        style={{ paddingLeft: '5px', width: '45px', height: '40px' }}
         size={25}
         onClick={() => {
           setPlace(inputPlace);

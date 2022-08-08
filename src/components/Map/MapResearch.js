@@ -6,6 +6,7 @@ export default function MapResearch({
   currentMarker,
   categoryMarkers,
   setCategoryMarkers,
+  categoryCode,
 }) {
   function searchPlaces(code, map) {
     // 장소 검색 객체를 생성
@@ -59,14 +60,14 @@ export default function MapResearch({
           if (currentMarker !== '') {
             if (currentMarker === null) {
               // 카테고리 선택 -> 마커 클릭 후 닫고 -> 지도 위치 옮겼을때
-              searchPlaces(categoryMarkers[0].category_code, map);
+              searchPlaces(categoryCode, map);
             } else {
               // 카테고리 선택 -> 마커 클릭 -> 지도 위치 옮겼을때
               searchPlaces(currentMarker.category_code, map);
             }
           } else {
             // 카테고리 선택 -> 지도 옮겼을때
-            searchPlaces(categoryMarkers[0].category_code, map);
+            searchPlaces(categoryCode, map);
           }
         }
       }}

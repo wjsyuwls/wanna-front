@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Map, Polygon } from 'react-kakao-maps-sdk';
 import * as C from '@chakra-ui/react';
 import { BsArrowLeft } from 'react-icons/bs';
@@ -10,31 +11,36 @@ import MapResearch from './MapResearch';
 import apis from '../../apis/index.js';
 
 export default function MyMap() {
-  const mapRef = React.useRef();
-  const [map, setMap] = React.useState();
-  const [center, setCenter] = React.useState({
+  const navigate = useNavigate();
+
+  const mapRef = useRef();
+  const [map, setMap] = useState();
+  const [center, setCenter] = useState({
     lat: 34.85673539186446,
     lng: 128.6378763279313,
   });
-  const [moveCenter, setMoveCenter] = React.useState(null);
+  const [moveCenter, setMoveCenter] = useState(null);
+  const [zoom, setZoom] = useState(9);
 
-  // 서비스에서 검증된 place 데이터
-  const [verifyPlace, setVerifyPlace] = React.useState([]);
-  // 검색한 키워드 문자열
-  const [place, setPlace] = React.useState('');
-  // 키워드로 검색한 데이터
-  const [searchMarkers, setSearchMarkers] = React.useState([]);
-  // 카테고리로 검색한 데이터
-  const [categoryMarkers, setCategoryMarkers] = React.useState([]);
-  // 클릭한 마커 데이터
-  const [currentMarker, setCurrentMarker] = React.useState();
-  // 마커 visible
-  const [visible, setVisible] = React.useState('');
-  // 폴리곤 path
-  const [path, setPath] = React.useState([]);
+  // verify place data
+  const [verifyPlace, setVerifyPlace] = useState([]);
+  // keyword search string
+  const [place, setPlace] = useState('');
+  // keyword search data
+  const [searchMarkers, setSearchMarkers] = useState([]);
+  // category seach data
+  const [categoryMarkers, setCategoryMarkers] = useState([]);
+  // category code
+  const [categoryCode, setCategoryCode] = useState('');
+  // onclick marker data
+  const [currentMarker, setCurrentMarker] = useState();
+  // marker visible
+  const [visible, setVisible] = useState('');
+  // polygon path now deactivation
+  const [path, setPath] = useState([]);
 
-  // page map 랜더링 시 db에서 서비스 검증된 place 가져옴
-  React.useEffect(() => {
+  // page map landering -> verify place get from db
+  useEffect(() => {
     let markers = [];
     apis.post('/api/place/get').then((res) => {
       res.data.forEach((data) => {
@@ -61,20 +67,27 @@ export default function MyMap() {
         alignItems="center"
         height="50px"
         padding="0px 20px"
+        mt="10px"
       >
-        <BsArrowLeft size={25} />
+        <img
+          src="/img/back.png"
+          style={{ width: '45px', height: '45px' }}
+          onClick={() => {
+            navigate(-1);
+          }}
+        />
         {place ? (
-          <C.Text fontSize={18} marginTop={21} marginLeft={10}>
+          <C.Text fontSize="20" marginTop={21} marginLeft={10}>
             {place}
           </C.Text>
         ) : (
-          <C.Text fontSize={18} marginTop={21} marginLeft={10}>
+          <C.Text fontSize="20" marginTop={21} marginLeft={10}>
             전국전체
           </C.Text>
         )}
       </C.Box>
       <C.Box flex="1" padding="0px 20px">
-        {/* 키워드 검색 */}
+        {/* keyword search */}
         <MapSearch
           map={map}
           place={place}
@@ -84,13 +97,15 @@ export default function MyMap() {
           path={path}
           verifyPlace={verifyPlace}
           setMoveCenter={setMoveCenter}
+          setZoom={setZoom}
         />
-        {/* 카테고리 검색 */}
+        {/* category search */}
         <MapCategory
           map={map}
           mapRef={mapRef}
           categoryMarkers={categoryMarkers}
           setCategoryMarkers={setCategoryMarkers}
+          setCategoryCode={setCategoryCode}
           visible={visible}
           setVisible={setVisible}
           setCurrentMarker={setCurrentMarker}
@@ -102,7 +117,7 @@ export default function MyMap() {
       <C.Box position="relative" flex="7" paddingTop="20">
         <Map
           center={center}
-          level={9}
+          level={zoom}
           style={{ width: '100%', height: '100%' }}
           onDragEnd={(map) => {
             setCenter({
@@ -141,8 +156,8 @@ export default function MyMap() {
           </>
         </Map>
 
-        {/* 카테고리 선택 -> 지도 옮겼을때 */}
-        {categoryMarkers.length > 0 && moveCenter && (
+        {/* category select -> map center move */}
+        {categoryCode && moveCenter && (
           <C.Box
             position="absolute"
             width="calc(100% - 40px)"
@@ -158,11 +173,12 @@ export default function MyMap() {
               currentMarker={currentMarker}
               categoryMarkers={categoryMarkers}
               setCategoryMarkers={setCategoryMarkers}
+              categoryCode={categoryCode}
             />
           </C.Box>
         )}
 
-        {/* 카테고리 선택 */}
+        {/* category select */}
         {currentMarker && (
           <MapInfo
             mapRef={mapRef}
