@@ -1,0 +1,95 @@
+.font_cafe {
+  font-family: 'cafe';
+}
+
+input {
+  border-bottom: double 3px;
+  width: 360px;
+  color: gray;
+}
+
+p {
+  margin: 0;
+}
+
+/* 메인페이지 css */
+.whole_container {
+  border: solid 1px;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  scrollbar-width: none;
+  font-family: 'cafe';
+}
+
+/* nav */
+.nav_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 8px 0px 8px;
+}
+
+.nav_title {
+  font-size: 45px;
+  font-family: 'cafe';
+}
+
+.nav_back {
+  width: 60px;
+  height: 60px;
+  border-radius: 70%;
+}
+
+.nav_btn_img {
+  width: 40px;
+  height: 40px;
+}
+
+/* 프로필 */
+.profile_container {
+  border-top: double 5px;
+  border-bottom: double 5px;
+  width: 100%;
+  height: 80%;
+  font-family: 'cafe';
+}
+
+.profile_img {
+  width: 50%;
+  height: 35%;
+  border-radius: 50%;
+}
+
+/* update */
+.profile_update {
+  text-align: left;
+  font-size: 20px;
+  margin-top: 15px;
+  font-size: 25px;
+}
+
+.updateButton {
+  font-size: 20px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* delete */
+.profile_delete {
+  display: grid;
+}
+
+.deleteButton {
+  font-size: 35px;
+}
+
+.addressShow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 350px;
+  background-color: gainsboro;
+}
