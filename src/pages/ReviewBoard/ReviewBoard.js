@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './ReviewBoard.css';
 import { Table, Button, ProgressBar } from 'react-bootstrap';
 import { AwesomeButton } from 'react-awesome-button';
@@ -10,7 +10,7 @@ import * as Swal from 'sweetalert2';
 
 function ReviewBoard() {
   // 장소 상세정보 페이지에서 장소 이름 받을꺼임 임시로
-  const place = '거제씨월드';
+  const { place_name } = useParams();
 
   const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState(null);
@@ -26,7 +26,7 @@ function ReviewBoard() {
       // setVerifyReview(data.filter((d) => d.verify == 1));
       setNotVerifyReview(data.filter((d) => d.verify == 0));
     });
-    apis.get(`/api/review/verify/${place}`).then((res) => {
+    apis.get(`/api/review/verify/${place_name}`).then((res) => {
       setVerifyReview(res.data);
     });
   }, []);
