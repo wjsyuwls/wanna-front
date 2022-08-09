@@ -1,10 +1,75 @@
 /* 가게 상세 정보 */
-.store_photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.font_cafe {
+  font-family: 'cafe';
 }
 
+.small_font {
+  font-size: 15px;
+}
+
+.normal_font {
+  font-size: 17px;
+}
+
+/* 메인페이지 css */
+.whole_container {
+  border: solid 1px;
+  height: 640px;
+  width: 360px;
+  overflow: auto;
+  scrollbar-width: none;
+  font-family: 'cute';
+}
+
+/* nav */
+.nav_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 8px 0px 8px;
+}
+
+.nav_title {
+  font-size: 45px;
+  font-family: 'cafe';
+}
+
+.nav_back {
+  width: 60px;
+  height: 60px;
+  border-radius: 70%;
+}
+
+.nav_btn_img {
+  width: 40px;
+  height: 40px;
+}
+
+/* body */
+.store_photo_container {
+  border: double 2px;
+  padding: 5px;
+  width: 100%;
+}
+
+.store_photo {
+  border: solid 1px;
+  width: 95%;
+  height: 40%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.store_title_container {
+  width: 100%;
+  border-bottom: double 5px;
+  align-items: center;
+}
+
+.store_title {
+  text-align: center;
+}
 .bold_letter {
   font-weight: bold;
 }

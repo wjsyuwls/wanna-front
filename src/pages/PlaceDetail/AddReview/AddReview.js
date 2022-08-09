@@ -3,10 +3,11 @@ import './AddReview.css';
 import apis from '../../../apis';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 function AddReview() {
   const navigate = useNavigate();
-
+  const user = useSelector((state) => state.reducer.user);
   const [files, setFiles] = useState('');
 
   const onLoadFile = (e) => {
@@ -139,6 +140,7 @@ function AddReview() {
                   formData.append('content', review.content);
                   formData.append('place_name', '가게 상호 넣을거에요');
                   formData.append('nickname', '유저닉네임');
+                  formData.append('address');
 
                   console.log('보낼 이미지', imagefile);
 
