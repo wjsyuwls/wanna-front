@@ -125,7 +125,7 @@ function ReviewBoard() {
           <h3 className="font_small ">투표 중인 리뷰들</h3>
           <AwesomeButton
             action={() => {
-              navigate('/AddReview');
+              navigate(`/AddReview/${place_name}`);
             }}
             type="secondary"
           >
