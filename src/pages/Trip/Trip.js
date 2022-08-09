@@ -76,13 +76,7 @@ function Trip() {
         </div>
         <AllPlace />
         <div className={styles.main_row6}>
-          <h3
-            onClick={() => {
-              navigate('/ReviewBoard');
-            }}
-          >
-            베스트 리뷰
-          </h3>
+          <h3>베스트 리뷰</h3>
           <Review_image />
         </div>
       </div>
@@ -314,11 +308,25 @@ function Modal부산() {
 }
 
 function Modal경상() {
+  const navigate = useNavigate();
+
   return (
     <>
       <ListGroup variant="flush">
         <ListGroup.Item>경상전체</ListGroup.Item>
-        <ListGroup.Item>✯거제시✯</ListGroup.Item>
+        <ListGroup.Item
+          onClick={() => {
+            navigate('/map');
+          }}
+        >
+          ✯거제시✯
+        </ListGroup.Item>
+        <ListGroup.Item>창원시</ListGroup.Item>
+        <ListGroup.Item>합천군</ListGroup.Item>
+        <ListGroup.Item>의령군</ListGroup.Item>
+        <ListGroup.Item>함안군</ListGroup.Item>
+        <ListGroup.Item>진주시</ListGroup.Item>
+        <ListGroup.Item>통영시</ListGroup.Item>
       </ListGroup>
     </>
   );
