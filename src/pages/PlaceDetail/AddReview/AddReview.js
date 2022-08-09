@@ -2,13 +2,33 @@ import React, { useState, useEffect } from 'react';
 import './AddReview.css';
 import apis from '../../../apis';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 function AddReview() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.reducer.user);
   const [files, setFiles] = useState('');
+
+  const { place_name } = useParams();
+
+  // https://docs.kaikas.io/02_api_reference/01_klaytn_provider?q=activate 참조
+  const connectKaikas = async () => {
+    if (typeof window.klaytn !== 'undefined') {
+      const provider = window['klaytn'];
+    } else {
+      window.open(
+        'https://chrome.google.com/webstore/detail/kaikas/jblndlipeogpafnldhgmapagcccfchpi?hl=ko',
+      );
+    }
+    try {
+      const accounts = await window.klaytn.enable();
+      const account = accounts[0];
+      return account;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const onLoadFile = (e) => {
     const file = e.target.files;
@@ -127,6 +147,8 @@ function AddReview() {
                 variant="outline-primary"
                 type="submit"
                 onClick={(e) => {
+                  const address = connectKaikas();
+
                   e.preventDefault();
                   let formData = new FormData();
                   let imagefile = document.querySelector('#img');
@@ -138,9 +160,9 @@ function AddReview() {
                   formData.append('title', review.title);
                   formData.append('score', review.score);
                   formData.append('content', review.content);
-                  formData.append('place_name', '가게 상호 넣을거에요');
+                  formData.append('place_name', place_name);
                   formData.append('nickname', '유저닉네임');
-                  formData.append('address');
+                  formData.append('address', address);
 
                   console.log('보낼 이미지', imagefile);
 
@@ -150,8 +172,9 @@ function AddReview() {
                         'Content-Type': 'multipart/form-data',
                       },
                     })
-                    .then((err) => {
-                      console.log('에러입니다', err);
+                    .then((result) => {
+                      console.log(result);
+                      navigate(-1);
                     });
                 }}
               >

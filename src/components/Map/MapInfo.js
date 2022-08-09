@@ -24,7 +24,7 @@ export default function MapInfo({
       justifyItems="center"
       onClick={() => {
         console.log(currentMarker.place_name);
-        navigate(`/storeInfo${currentMarker.place_name}`);
+        navigate(`/storeInfo/${currentMarker.place_name}`);
       }}
     >
       {/* category select -> marker click -> move map center */}
