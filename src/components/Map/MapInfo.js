@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import * as C from '@chakra-ui/react';
 import MapResearch from './MapResearch';
 
@@ -10,6 +11,8 @@ export default function MapInfo({
   verifyPlace,
   setCategoryMarkers,
 }) {
+  const navigate = useNavigate();
+
   return (
     <C.Grid
       position="absolute"
@@ -19,6 +22,10 @@ export default function MapInfo({
       bottom="20px"
       zIndex={1}
       justifyItems="center"
+      onClick={() => {
+        console.log(currentMarker.place_name);
+        navigate(`/storeInfo${currentMarker.place_name}`);
+      }}
     >
       {/* category select -> marker click -> move map center */}
       {categoryMarkers && moveCenter && (

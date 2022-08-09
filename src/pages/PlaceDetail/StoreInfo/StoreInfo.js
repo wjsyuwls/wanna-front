@@ -1,11 +1,28 @@
 import React from 'react';
 import './StoreInfo.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
+import apis from '../../../apis';
 
 function StoreInfo() {
   let navigate = useNavigate();
+  const { place_name } = useParams();
+  let [storeData, setStoreData] = React.useState();
+
+  React.useEffect(() => {
+    apis
+      .post('/api/place/getStoreInfo', { place_name: place_name })
+      .then((response) => {
+        setStoreData(response.data[0]);
+        console.log('가게정보는 다음과 같습니다', storeData);
+
+        return storeData;
+      })
+      .catch((err) => {
+        console.log('가게 정보 불러오기 에러', err);
+      });
+  }, []);
 
   return (
     <div
@@ -128,18 +145,10 @@ function StoreInfo() {
           borderBottom: 'double 5px',
         }}
       >
-        <h3
-          style={{
-            display: 'inline-block',
-          }}
-        >
-          업체명{' '}
-          <span
-            style={{
-              fontSize: '15px',
-            }}
-          >
-            ＜점포 카테고리＞
+        <h3>
+          {storeData?.place_name}
+          <span className="category_span">
+            &lt;{storeData?.category_name}&gt;
           </span>
         </h3>
       </div>
@@ -170,10 +179,11 @@ function StoreInfo() {
           </h3>
 
           <AwesomeButton
-            style={{
-              width: '100px',
-            }}
+            className="review_button"
             type="secondary"
+            action={() => {
+              navigate(`/ReviewBoard/${place_name}`);
+            }}
           >
             리뷰 보러 가기
           </AwesomeButton>
@@ -198,11 +208,11 @@ function StoreInfo() {
           </h3>
 
           <AwesomeButton
-            style={{
-              width: '100px',
-              marginBottom: '10px',
-            }}
+            className="review_button"
             type="secondary"
+            action={() => {
+              navigate(`/ReviewBoard/${place_name}`);
+            }}
           >
             투표 하러 가기
           </AwesomeButton>
@@ -216,23 +226,24 @@ function StoreInfo() {
       >
         <div>
           <h3 className="bold_letter">
-            주소:{' '}
-            <span className="normal_letter">
-              경남 거제시 일운면 지세포로 122
-            </span>
+            주소: <span className="normal_letter">{storeData?.address}</span>
           </h3>
           <h3 className="bold_letter">
             영업시간: <span className="normal_letter">오전 11시</span>~
             <span className="normal_letter">오후 10시</span>
           </h3>
           <h3 className="bold_letter">
-            홈페이지: <span className="normal_letter">www.naver.com</span>
+            홈페이지:{' '}
+            <span className="normal_letter">{storeData?.place_url}</span>
           </h3>
           <h3 className="bold_letter">
-            Instagram: <span className="normal_letter">www.naver.com</span>
+            Instagram:{' '}
+            <span className="normal_letter">
+              https://www.instagram.com/dlwlrma/
+            </span>
           </h3>
           <h3 className="bold_letter">
-            Tel: <span className="normal_letter">055-541-8426</span>
+            Tel: <span className="normal_letter">{storeData?.phone}</span>
           </h3>
         </div>
       </div>
