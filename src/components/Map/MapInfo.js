@@ -22,10 +22,6 @@ export default function MapInfo({
       bottom="20px"
       zIndex={1}
       justifyItems="center"
-      onClick={() => {
-        console.log(currentMarker.place_name);
-        navigate(`/storeInfo/${currentMarker.place_name}`);
-      }}
     >
       {/* category select -> marker click -> move map center */}
       {categoryMarkers && moveCenter && (
@@ -45,6 +41,10 @@ export default function MapInfo({
         borderRadius="3px"
         padding="15px 15px"
         mt="20px"
+        onClick={() => {
+          console.log(currentMarker.place_name);
+          navigate(`/storeInfo/${currentMarker.place_name}`);
+        }}
       >
         <C.Image
           flex="2"

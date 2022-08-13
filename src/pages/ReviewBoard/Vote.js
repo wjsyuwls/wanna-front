@@ -3,6 +3,7 @@ import * as Swal from 'sweetalert2';
 
 // vote f
 export default async function vote(id, _a_d, review) {
+  console.log(review);
   if (typeof window.klaytn !== 'undefined') {
     const provider = window['klaytn'];
   }
@@ -62,11 +63,7 @@ export default async function vote(id, _a_d, review) {
         }, 100);
 
         // pay 10 token
-        await apis
-          .post('/api/review/vote/transfer', { address: account })
-          .then((res) => {
-            console.log(res);
-          });
+        await apis.post('/api/review/vote/transfer', { address: account });
 
         // vote
         const body = {
@@ -95,7 +92,9 @@ export default async function vote(id, _a_d, review) {
               img: review.img,
               score: review.score,
             };
-            await apis.post('/api/review/vote/verify', body);
+            await apis.post('/api/review/vote/verify', body).then((receipt) => {
+              console.log(receipt.data.message);
+            });
           }
         }
       },
