@@ -146,8 +146,9 @@ function AddReview() {
                 className="input_button"
                 variant="outline-primary"
                 type="submit"
-                onClick={(e) => {
-                  const address = connectKaikas();
+                onClick={async (e) => {
+                  // const address = await connectKaikas();
+                  // console.log(address);
 
                   e.preventDefault();
                   let formData = new FormData();
@@ -162,7 +163,7 @@ function AddReview() {
                   formData.append('content', review.content);
                   formData.append('place_name', place_name);
                   formData.append('nickname', '유저닉네임');
-                  formData.append('address', address);
+                  formData.append('address', user.address);
 
                   console.log('보낼 이미지', imagefile);
 

@@ -11,8 +11,6 @@ function StoreInfo() {
   const [storeData, setStoreData] = React.useState();
 
   const [placeReview, setPlaceReview] = React.useState([]);
-  const [img1, setImg1] = React.useState();
-  const [img2, setImg2] = React.useState();
 
   React.useEffect(() => {
     apis //
@@ -23,20 +21,7 @@ function StoreInfo() {
       .catch((err) => {
         console.log('가게 정보 불러오기 에러', err);
       });
-
-    apis.get(`/api/review/verify/${place_name}`).then((res) => {
-      setPlaceReview(res.data);
-      setImg1(res.data[0].img);
-      setImg2(res.data[1].img);
-    });
   }, []);
-
-  // setImg1(storeData[0].img);
-  // setImg2(storeData[1].img);
-  // console.log('가게이미지1: ', img1);
-  // console.log('가게이미지2: ', img2);
-  console.log('가게정보는 다음과 같습니다', storeData);
-  console.log('_______', img1, img2);
 
   return (
     <div className="App box whole_container">
@@ -61,7 +46,11 @@ function StoreInfo() {
 
       {/* 가게 사진 */}
       <div className="store_photo_container">
-        <img className="store_photo" src={img1} />
+        <img
+          className="store_photo"
+          src={storeData?.place_url}
+          style={{ width: '350px', height: '350px' }}
+        />
       </div>
       <div className="store_title_container">
         <h3 className="store_title">
