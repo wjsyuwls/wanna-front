@@ -21,7 +21,7 @@ function ReviewBoard() {
 
   // review verify filter
   useEffect(() => {
-    apis.get('/api/review').then((res) => {
+    apis.get(`/api/review/${place_name}`).then((res) => {
       let data = res.data;
       // setVerifyReview(data.filter((d) => d.verify == 1));
       setNotVerifyReview(data.filter((d) => d.verify == 0));
