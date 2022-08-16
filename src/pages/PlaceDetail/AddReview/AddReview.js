@@ -132,15 +132,7 @@ function AddReview() {
               onChange={onLoadFile}
             ></input>
             <img src="" className="img_box"></img>
-            {/* <input
-              name="img"
-              type="file"
-              id="file"
-              onChange={(e) => {
-                handleChangeFile(e);
-              }}
-            /> */}
-            {/* {imgBase64 && <img src={imgBase64} className="view_img" />} */}
+
             <div>
               <Button
                 className="input_button"
