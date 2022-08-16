@@ -49,7 +49,7 @@ function StoreInfo() {
         <img
           className="store_photo"
           src={storeData?.place_url}
-          style={{ width: '350px', height: '350px' }}
+          style={{ width: '100%', height: '100%' }}
         />
       </div>
       <div className="store_title_container">
@@ -199,7 +199,7 @@ function StoreInfo() {
             width: '100%',
           }}
         >
-          <img className="store_photo" src="/img/graph_sample.png"></img>
+          <img className="store_graph" src="/img/graph_sample.png"></img>
         </div>
       </div>
     </div>
