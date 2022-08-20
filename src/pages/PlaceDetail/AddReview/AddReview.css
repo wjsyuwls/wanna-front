@@ -56,3 +56,10 @@
   width: 50px;
   height: 50px;
 }
+
+.img_box {
+  width: 230px;
+  height: auto;
+  border: double 3px;
+  border-radius: 9px;
+}

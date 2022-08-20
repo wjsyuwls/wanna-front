@@ -51,14 +51,14 @@
   border: double 2px;
   padding: 5px;
   width: 100%;
-}
-
-.store_photo {
-  border: solid 1px;
-  width: 95%;
   height: 40%;
   object-fit: cover;
+}
+
+.store_graph {
+  border: solid 1px;
   border-radius: 10px;
+  width: 100%;
 }
 
 .store_title_container {
