@@ -1,1 +1,1 @@
-# 🐳 WANNA FRONT
+# WANNA FRONT
